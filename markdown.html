@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>markdown.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%E2%84%966">Лабораторная работа №6</h1>
+<h2 id="%D1%80%D0%B0%D0%B7%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%87%D0%B8%D1%81%D0%B5%D0%BB-%D0%BD%D0%B0-%D0%BC%D0%BD%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D0%B8">Разложение чисел на множители</h2>
+<hr>
+<h3 id="%D1%86%D0%B5%D0%BB%D1%8C-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B"><strong>Цель работы</strong></h3>
+<p>Реализация ( \rho )-метода Полларда для факторизации составного числа ( n ).</p>
+<hr>
+<h3 id="%D1%82%D0%B5%D0%BE%D1%80%D0%B5%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D1%87%D0%B0%D1%81%D1%82%D1%8C"><strong>Теоретическая часть</strong></h3>
+<p>Задача разложения числа на множители заключается в поиске нетривиального делителя составного числа ( n ). Один из эффективных методов — ( \rho )-метод Полларда, который основан на использовании простой функции ( f(x) = (x^2 + 1) \mod n ).</p>
+<p><strong>Описание алгоритма:</strong></p>
+<ol>
+<li>Задаётся начальное значение ( c = 1 ), ( a = c ), ( b = c ).</li>
+<li>Далее итеративно вычисляются:
+<ul>
+<li>( a \leftarrow f(a) \mod n ),</li>
+<li>( b \leftarrow f(f(b)) \mod n ),</li>
+<li>( d \leftarrow \text{НОД}(|a - b|, n) ).</li>
+</ul>
+</li>
+<li>Если ( d = n ), то алгоритм перезапускается с другим значением ( c ).</li>
+<li>Если ( 1 &lt; d &lt; n ), то ( d ) — нетривиальный делитель числа ( n ).</li>
+</ol>
+<hr>
+<h3 id="%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F-%D1%87%D0%B0%D1%81%D1%82%D1%8C"><strong>Практическая часть</strong></h3>
+<h4 id="1-%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D0%B0"><strong>1. Реализация алгоритма</strong></h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> gcd
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pollards_rho</span><span class="hljs-params">(n, f=lambda x: <span class="hljs-params">(x**<span class="hljs-number">2</span> + <span class="hljs-number">1</span>)</span> % n)</span>:</span>
+    <span class="hljs-string">"""
+    Реализация алгоритма Полларда для факторизации числа.
+    
+    Параметры:
+        n (int): Составное число для разложения на множители.
+        f (function): Функция для итерации, по умолчанию f(x) = (x^2 + 1) mod n.
+        
+    Возвращает:
+        int: Нетривиальный делитель числа n или None, если факторизация не удалась.
+    """</span>
+    c = <span class="hljs-number">1</span>  <span class="hljs-comment"># Начальное значение</span>
+    a = c
+    b = c
+    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+        a = f(a)  <span class="hljs-comment"># Одно обновление a</span>
+        b = f(f(b))  <span class="hljs-comment"># Два обновления b</span>
+        d = gcd(abs(a - b), n)  <span class="hljs-comment"># НОД(|a - b|, n)</span>
+        <span class="hljs-keyword">if</span> d == n:  <span class="hljs-comment"># Неудача, нужно перезапустить с новым c</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+        <span class="hljs-keyword">if</span> d &gt; <span class="hljs-number">1</span>:  <span class="hljs-comment"># Успех, найден нетривиальный делитель</span>
+            <span class="hljs-keyword">return</span> d
+
+<span class="hljs-comment"># Пример: Факторизация числа 1359331</span>
+n = <span class="hljs-number">1359331</span>
+factor = pollards_rho(n)
+<span class="hljs-keyword">if</span> factor:
+    print(<span class="hljs-string">f"Нетривиальный делитель числа <span class="hljs-subst">{n}</span>: <span class="hljs-subst">{factor}</span>."</span>)
+    print(<span class="hljs-string">f"Другой делитель: <span class="hljs-subst">{n // factor}</span>."</span>)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">f"Не удалось найти делитель для числа <span class="hljs-subst">{n}</span>."</span>)
+
+</div></code></pre>
+<h1 id="2-%D1%80%D0%B0%D0%B7%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%87%D0%B8%D1%81%D0%BB%D0%B0">2. Разложение числа</h1>
+<p>Для примера разложим число 𝑛=1359331,как указано в задании.
+1.Подставляем n=1359331 в алгоритм.
+2.После выполнения ρ-метода Полларда находим:</p>
+<ul>
+<li>Нетривиальный делитель d=1181.</li>
+<li>Второй делитель n/d=1151.</li>
+</ul>
+<pre class="hljs"><code><div>Нетривиальный делитель числа 1359331: 1181.
+Другой делитель: 1151.
+
+</div></code></pre>
+<p>Итоговое разложение:  1359331=1181×1151</p>
+<pre class="hljs"><code><div>Вывод
+В ходе лабораторной работы реализован 𝜌-метод Полларда для разложения числа на множители. Программа успешно нашла разложение числа 𝑛 = 1359331 на множители 1181 и 1151. Метод применим к другим составным числам, для чего достаточно заменить значение 𝑛 в коде.</div></code></pre>
+
+</body>
+</html>
